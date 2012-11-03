@@ -14,6 +14,13 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  if(!triangleValid(a, b, c))
+  	raise TriangleError
+  end
+  triangleType(a, b, c)
+end
+
+def triangleType(a, b, c)
   if( a == b && b == c)
   	 return :equilateral
   end
@@ -21,6 +28,22 @@ def triangle(a, b, c)
   	return :isosceles
   end
   :scalene
+end
+
+def triangleValid(a, b, c)
+  validValue(a) && validValue(b) && validValue(c) && validSideSums(a, b, c)
+end
+
+def validValue(a)
+  a > 0
+end
+
+def validSideSums(a, b, c)
+	validSideSum(a, b, c) && validSideSum(b, c, a) && validSideSum(a, c, b)
+end
+
+def validSideSum(a, b, c)
+  (a + b) > c
 end
 
 # Error class used in part 2.  No need to change this code.
