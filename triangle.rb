@@ -31,19 +31,15 @@ def triangleType(a, b, c)
 end
 
 def triangleValid(a, b, c)
-  validSides(a, b, c) && validSideSums(a, b, c)
+  validSides(a, b, c) && validSideSizes(a, b, c)
 end
 
 def validSides(*args)
   args.inject(true){ |validity, item| validity && item > 0 }
 end
 
-def validSideSums(a, b, c)
-	validSideSum(a, b, c) && validSideSum(b, c, a) && validSideSum(a, c, b)
-end
-
-def validSideSum(a, b, c)
-  (a + b) > c
+def validSideSizes(*args)
+  args.size == 3 && args.permutation.to_a.inject(true){ |validity, arr| validity && arr[0] + arr[1] > arr[2] }
 end
 
 # Error class used in part 2.  No need to change this code.
