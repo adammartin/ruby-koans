@@ -31,11 +31,11 @@ def triangleType(a, b, c)
 end
 
 def triangleValid(a, b, c)
-  validValue(a) && validValue(b) && validValue(c) && validSideSums(a, b, c)
+  validSides(a, b, c) && validSideSums(a, b, c)
 end
 
-def validValue(a)
-  a > 0
+def validSides(*args)
+  args.inject(true){ |validity, item| validity && item > 0 }
 end
 
 def validSideSums(a, b, c)
