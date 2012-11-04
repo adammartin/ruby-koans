@@ -30,7 +30,19 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  (1..6).to_a.inject(0) {|tempSum, item| tempSum + sum(dice.count(item), tripleValue(item), singleValue(item))}
+end
+
+def tripleValue digit
+  digit == 1 ? 1000 : digit * 100
+end
+
+def singleValue digit
+  digit == 1 ? 100 : digit == 5 ? 50 : 0
+end
+
+def sum(digitCount, tripleValue, singleMultiplier)
+  digitCount > 2 ? tripleValue + ((digitCount - 3) * singleMultiplier) : digitCount * singleMultiplier
 end
 
 class AboutScoringProject < EdgeCase::Koan
