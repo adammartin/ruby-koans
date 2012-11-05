@@ -20,14 +20,11 @@ def triangle(a, b, c)
   triangleType(a, b, c)
 end
 
-def triangleType(a, b, c)
-  if( a == b && b == c)
-  	 return :equilateral
-  end
-  if( a == b || b == c || a == c)
-  	return :isosceles
-  end
-  :scalene
+def triangleType(*sides)
+  numUniqueSides = sides.uniq.size
+  numUniqueSides == 3 ? 
+    :scalene : 
+    numUniqueSides == 2 ? :isosceles : :equilateral
 end
 
 def triangleValid(a, b, c)
