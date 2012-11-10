@@ -21,10 +21,7 @@ def triangle(a, b, c)
 end
 
 def triangleType(*sides)
-  numUniqueSides = sides.uniq.size
-  numUniqueSides == 3 ? 
-    :scalene : 
-    numUniqueSides == 2 ? :isosceles : :equilateral
+  { 3 => :scalene, 2 => :isosceles, 1 => :equilateral }[sides.uniq.size]
 end
 
 def triangleValid(a, b, c)
